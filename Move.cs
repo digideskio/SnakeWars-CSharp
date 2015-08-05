@@ -9,7 +9,7 @@ namespace SnakeWars.SampleBot
         public static readonly Move Straight = new Move {Command = "STRAIGHT", MoveOffset = 0};
         public static readonly Move None = new Move {Command = "", MoveOffset = 0};
 
-        private static readonly List<DirectionOffset> Offsets = new List<DirectionOffset>
+        public static readonly List<DirectionOffset> Offsets = new List<DirectionOffset>
         {
             new DirectionOffset {Direction = SnakeDirection.Up, Offset = new Offset {DX = 0, DY = 1}},
             new DirectionOffset {Direction = SnakeDirection.Right, Offset = new Offset {DX = 1, DY = 0}},
@@ -33,7 +33,7 @@ namespace SnakeWars.SampleBot
             return !string.IsNullOrWhiteSpace(m.Command);
         }
 
-        private static PointDTO OffsetModulo(PointDTO p, Offset offset, SizeDTO boardSize)
+        public static PointDTO OffsetModulo(PointDTO p, Offset offset, SizeDTO boardSize)
         {
             return new PointDTO
             {
@@ -42,13 +42,13 @@ namespace SnakeWars.SampleBot
             };
         }
 
-        private struct Offset
+        public struct Offset
         {
             public int DX { get; set; }
             public int DY { get; set; }
         }
 
-        private struct DirectionOffset
+        public struct DirectionOffset
         {
             public SnakeDirection Direction { get; set; }
             public Offset Offset { get; set; }

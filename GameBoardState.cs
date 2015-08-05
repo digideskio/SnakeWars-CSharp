@@ -8,6 +8,8 @@ namespace SnakeWars.SampleBot
     {
         private readonly GameStateDTO _gameState;
 
+        public SizeDTO BoardSize() => _gameState.BoardSize;
+
         public GameBoardState(GameStateDTO gameState)
         {
             _gameState = gameState;
@@ -25,9 +27,19 @@ namespace SnakeWars.SampleBot
             return new HashSet<PointDTO>(_gameState.Walls.Concat(_gameState.Snakes.SelectMany(snake => snake.Cells)));
         }
 
+        public IEnumerable<SnakeDTO> GetSnakes()
+        {
+            return _gameState.Snakes;
+        } 
+
         public SnakeDTO GetSnake(string snakeId)
         {
             return _gameState.Snakes.First(s => s.Id == snakeId);
         }
+
+        public IEnumerable<PointDTO> GetFood()
+        {
+            return this._gameState.Food;
+        } 
     }
 }

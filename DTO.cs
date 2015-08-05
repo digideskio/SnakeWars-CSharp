@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SnakeWars.SampleBot
 {
@@ -39,9 +40,26 @@ namespace SnakeWars.SampleBot
         public int Height { get; set; }
     }
 
-    public struct PointDTO
+    public struct PointDTO : IEquatable<PointDTO>
     {
         public int X { get; set; }
         public int Y { get; set; }
+
+        public int DistanceTo(PointDTO point, SizeDTO boardSize)
+        {
+            var distance = Math.Abs(point.X - this.X) + Math.Abs(point.Y - this.Y);
+
+            var half = boardSize.Height/2 + boardSize.Width/2;
+            return distance;
+            ;
+            if (distance > half)
+            {
+                return half - distance;
+            }
+
+            return distance;            
+        }
+
+        public bool Equals(PointDTO other) => other.X == this.X && other.Y == this.Y;
     }
 }
